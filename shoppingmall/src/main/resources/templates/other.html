@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>필기구</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh; /* 화면 전체 높이를 사용 */
+    }
+
+    header {
+      background-color: #8B5E3C;
+      color: white;
+      padding: 20px;
+      text-align: center;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .filters select {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #8B5E3C;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      margin-top: auto; /* footer가 페이지 하단에 고정되도록 */
+    }
+
+    .product-list {
+      padding: 5px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 20px;
+      flex-grow: 1; /* product-list가 남은 공간을 채우도록 설정 */
+      overflow-y: auto; /* 항목이 많으면 스크롤 가능 */
+    }
+
+    .product-item {
+      height:250px;
+      width:150px;
+      background-color: #fff;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      text-align: center;
+    }
+
+    .product-item img {
+      width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+  <h1>기타 문구 및 소품</h1>
+</header>
+<div class="container">
+  <div class="filters">
+    <!-- 카테고리 필터 -->
+    <select id="categoryFilter" onchange="filterAndRedirect()">
+      <option value="">카테고리 선택</option>
+      <option value="pen">필기구</option>
+      <option value="notebooks">노트 및 다이어리</option>
+      <option value="files">파일 및 폴더</option>
+      <option value="stationery">학생용 문구</option>
+      <option value="office">사무용품</option>
+      <option value="other">기타 문구 및 소품</option>
+    </select>
+  </div>
+</div>
+<!-- Product List Section -->
+<div class="product-list">
+  <div class="product-item">
+    <img src="/images/tape.png" alt="테이프"/>
+    <p>테이프</p>
+  </div>
+  <div class="product-item">
+    <img src="/images/boxtape.png" alt="박스테이프"/>
+    <p>박스 테이프</p>
+  </div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+  <p>&copy; 2024 나의 문구 판매 온라인 스토어. 모든 권리 보유.</p>
+</footer>
+<script>
+  // Swiper 초기화
+  const swiper = new Swiper('.swiper-container', {
+    loop: true, // 무한 루프
+    autoplay: {
+      delay: 3000, // 3초마다 자동으로 슬라이드 전환
+      disableOnInteraction: false, // 사용자가 조작해도 자동 재생 계속
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  });
+
+  // 카테고리 선택 후 페이지 전환
+  function filterAndRedirect() {
+    const categoryFilter = document.getElementById("categoryFilter").value;
+
+    let url = "";
+
+    // 카테고리별 URL 설정
+    switch (categoryFilter) {
+      case "pen":
+        url = "/pen"; // 필기구 페이지로 이동
+        break;
+      case "notebooks":
+        url = "/notebooks"; // 노트 및 다이어리 페이지로 이동
+        break;
+      case "files":
+        url = "/files"; // 파일 및 폴더 페이지로 이동
+        break;
+      case "stationery":
+        url = "/stationery"; // 학생용 문구 페이지로 이동
+        break;
+      case "office":
+        url = "/office"; // 사무용품 페이지로 이동
+        break;
+      case "other":
+        url = "/other"; // 기타 문구 및 소품 페이지로 이동
+        break;
+      default:
+        return; // 필터를 선택하지 않으면 아무 일도 하지 않음
+    }
+
+    // 슬라이드 애니메이션 후 URL로 리다이렉트
+    setTimeout(function() {
+      if (url) {
+        window.location.href = url;
+      }
+    }, 500); // 애니메이션이 끝날 때까지 기다림 (500ms)
+  }
+</script>
+</body>
+</html>

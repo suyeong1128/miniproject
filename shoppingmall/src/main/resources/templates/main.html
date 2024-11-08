@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>기본 홈페이지</title>
+
+  <!-- Swiper CSS -->
+  <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css">
+
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #8B5E3C;
+      color: white;
+      padding: 20px;
+      text-align: center;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    header p {
+      margin: 0;
+    }
+
+    nav {
+      background-color: #A0522D;
+      padding: 10px;
+    }
+
+    nav a {
+      color: white;
+      padding: 10px 20px;
+      text-decoration: none;
+      margin: 0 10px;
+    }
+
+    nav a:hover {
+      background-color: #D2691E;
+    }
+
+    .container {
+      padding: 20px;
+    }
+
+    .filters {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .filters select {
+      padding: 10px;
+      font-size: 16px;
+      margin-right: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
+
+    footer {
+      background-color: #8B5E3C;
+      color: white;
+      text-align: center;
+      padding: 10px;
+      position: fixed;
+      bottom: 0;
+      width: 100%;
+    }
+
+    .auth-links a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+    }
+
+    .auth-links a:hover {
+      text-decoration: underline;
+    }
+
+    /* Swiper */
+    .swiper-container {
+      width: 100%;
+      height: 680px; /* 슬라이드 높이 */
+    }
+
+    .swiper-slide {
+      /* 슬라이드 영역이 100% 가로 크기와 400px 높이를 가짐 */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+    }
+
+    .swiper-slide img {
+      width: 100%; /* 슬라이드 너비에 맞추기 */
+      height: 100%; /* 슬라이드 높이에 맞추기 */
+    }
+
+    footer {
+      z-index: 1; /* Footer를 가장 위로 배치 */
+    }
+
+  </style>
+</head>
+<body>
+
+<!-- Header Section -->
+<header>
+  <p>나의 첫 번째 홈페이지</p>
+  <div class="auth-links">
+    <a href="#">로그인</a>
+    <a href="#">회원가입</a>
+  </div>
+</header>
+
+<!-- Navigation Section -->
+<nav>
+  <a href="#">홈</a>
+  <a href="/pen">제품</a>
+  <a href="#">가격</a>
+  <a href="#">문의</a>
+</nav>
+
+<!-- Filter Section -->
+<div class="container">
+  <div class="filters">
+    <!-- 카테고리 필터 -->
+    <select id="categoryFilter" onchange="filterAndRedirect()">
+      <option value="">카테고리 선택</option>
+      <option value="pen">필기구</option>
+      <option value="notebooks">노트 및 다이어리</option>
+      <option value="files">파일 및 폴더</option>
+      <option value="stationery">학생용 문구</option>
+      <option value="office">사무용품</option>
+      <option value="other">기타 문구 및 소품</option>
+    </select>
+  </div>
+</div>
+
+<!-- Swiper Section -->
+<div class="swiper-container">
+  <div class="swiper-wrapper">
+    <!-- 각 swiper-slide에 이미지 추가 -->
+    <div class="swiper-slide">
+      <img src="/images/pen.png"/>
+    </div>
+    <div class="swiper-slide">
+      <img src="/images/note.png"/>
+    </div>
+    <div class="swiper-slide">
+      <img src="/images/file.png"/>
+    </div>
+    <div class="swiper-slide">
+      <img src="/images/stationery.png"/>
+    </div>
+    <div class="swiper-slide">
+      <img src="/images/stapler.png"/>
+    </div>
+    <div class="swiper-slide">
+      <img src="/images/tape.png"/>
+    </div>
+  </div>
+
+  <!-- Add Pagination -->
+  <div class="swiper-pagination"></div>
+</div>
+
+<!-- Footer Section -->
+<footer>
+  <p>&copy; 2024 나의 문구 판매 온라인 스토어. 모든 권리 보유.</p>
+</footer>
+
+<!-- Swiper JS -->
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+
+<!-- JavaScript for Filtering and Redirecting -->
+<script>
+  // Swiper 초기화
+  const swiper = new Swiper('.swiper-container', {
+    loop: true, // 무한 루프
+    autoplay: {
+      delay: 3000, // 3초마다 자동으로 슬라이드 전환
+      disableOnInteraction: false, // 사용자가 조작해도 자동 재생 계속
+    },
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true
+    }
+  });
+
+  // 카테고리 선택 후 페이지 전환
+  function filterAndRedirect() {
+    const categoryFilter = document.getElementById("categoryFilter").value;
+
+    let url = "";
+
+    // 카테고리별 URL 설정
+    switch (categoryFilter) {
+      case "pen":
+        url = "/pen"; // 필기구 페이지로 이동
+        break;
+      case "notebooks":
+        url = "/notebooks"; // 노트 및 다이어리 페이지로 이동
+        break;
+      case "files":
+        url = "/files"; // 파일 및 폴더 페이지로 이동
+        break;
+      case "stationery":
+        url = "/stationery"; // 학생용 문구 페이지로 이동
+        break;
+      case "office":
+        url = "/office"; // 사무용품 페이지로 이동
+        break;
+      case "other":
+        url = "/other"; // 기타 문구 및 소품 페이지로 이동
+        break;
+      default:
+        return; // 필터를 선택하지 않으면 아무 일도 하지 않음
+    }
+
+    // 슬라이드 애니메이션 후 URL로 리다이렉트
+    setTimeout(function() {
+      if (url) {
+        window.location.href = url;
+      }
+    }, 500); // 애니메이션이 끝날 때까지 기다림 (500ms)
+  }
+</script>
+
+</body>
+</html>
