@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>사무용품</title>
+  <title>노트 및 다이어리</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -78,7 +78,7 @@
 
 <!-- Header Section -->
 <header>
-  <h1>사무용품</h1>
+  <h1>노트 및 다이어리</h1>
 </header>
 <div class="container">
   <div class="filters">
@@ -97,12 +97,24 @@
 <!-- Product List Section -->
 <div class="product-list">
   <div class="product-item">
-    <img src="/images/stapler.png" alt="스테이플러"/>
-    <p>스테이플러</p>
+    <img src="/images/note.png" alt="노트"/>
+    <p>노트</p>
+    <p>2000원</p>
   </div>
   <div class="product-item">
-    <img src="/images/a4.png" alt="a4용지"/>
-    <p>a4 용지</p>
+    <img src="/images/diary.png" alt="다이어리"/>
+    <p>다이어리</p>
+    <p>8000원</p>
+  </div>
+  <div class="product-item">
+    <img src="/images/planner.png" alt="플래너"/>
+    <p>플래너</p>
+    <p>8000원</p>
+  </div>
+  <div class="product-item">
+    <img src="/images/postit.png" alt="포스트잇"/>
+    <p>포스트잇</p>
+    <p>500원</p>
   </div>
 </div>
 
@@ -133,22 +145,22 @@
     // 카테고리별 URL 설정
     switch (categoryFilter) {
       case "pen":
-        url = "/pen"; // 필기구 페이지로 이동
+        url = "/product/pen"; // 필기구 페이지로 이동
         break;
       case "notebooks":
-        url = "/notebooks"; // 노트 및 다이어리 페이지로 이동
+        url = "/product/notebooks"; // 노트 및 다이어리 페이지로 이동
         break;
       case "files":
-        url = "/files"; // 파일 및 폴더 페이지로 이동
+        url = "/product/files"; // 파일 및 폴더 페이지로 이동
         break;
       case "stationery":
-        url = "/stationery"; // 학생용 문구 페이지로 이동
+        url = "/product/stationery"; // 학생용 문구 페이지로 이동
         break;
       case "office":
-        url = "/office"; // 사무용품 페이지로 이동
+        url = "/product/office"; // 사무용품 페이지로 이동
         break;
       case "other":
-        url = "/other"; // 기타 문구 및 소품 페이지로 이동
+        url = "/product/other"; // 기타 문구 및 소품 페이지로 이동
         break;
       default:
         return; // 필터를 선택하지 않으면 아무 일도 하지 않음

@@ -92,7 +92,6 @@
     }
 
     .swiper-slide {
-      /* 슬라이드 영역이 100% 가로 크기와 400px 높이를 가짐 */
       display: flex;
       justify-content: center;
       align-items: center;
@@ -114,17 +113,24 @@
 
 <!-- Header Section -->
 <header>
-  <p>나의 첫 번째 홈페이지</p>
+  <p>SY's stationery</p>
   <div class="auth-links">
-    <a href="#">로그인</a>
-    <a href="#">회원가입</a>
+    <span th:if="${userEmail != null}">
+      <a href="/cart">장바구니</a>&nbsp;
+      <span th:text="${userEmail} + ' 님 환영합니다'"></span>
+      <a href="/logout">로그아웃</a>
+    </span>
+    <span th:if="${userEmail == null}">
+      <a href="/login">로그인</a>
+      <a href="/register">회원가입</a>
+    </span>
   </div>
 </header>
 
 <!-- Navigation Section -->
 <nav>
   <a href="#">홈</a>
-  <a href="/pen">제품</a>
+  <a href="/product/pen">제품</a>
   <a href="#">가격</a>
   <a href="#">문의</a>
 </nav>
@@ -132,7 +138,6 @@
 <!-- Filter Section -->
 <div class="container">
   <div class="filters">
-    <!-- 카테고리 필터 -->
     <select id="categoryFilter" onchange="filterAndRedirect()">
       <option value="">카테고리 선택</option>
       <option value="pen">필기구</option>
@@ -148,28 +153,13 @@
 <!-- Swiper Section -->
 <div class="swiper-container">
   <div class="swiper-wrapper">
-    <!-- 각 swiper-slide에 이미지 추가 -->
-    <div class="swiper-slide">
-      <img src="/images/pen.png"/>
-    </div>
-    <div class="swiper-slide">
-      <img src="/images/note.png"/>
-    </div>
-    <div class="swiper-slide">
-      <img src="/images/file.png"/>
-    </div>
-    <div class="swiper-slide">
-      <img src="/images/stationery.png"/>
-    </div>
-    <div class="swiper-slide">
-      <img src="/images/stapler.png"/>
-    </div>
-    <div class="swiper-slide">
-      <img src="/images/tape.png"/>
-    </div>
+    <div class="swiper-slide"><img src="/images/pen.png"/></div>
+    <div class="swiper-slide"><img src="/images/note.png"/></div>
+    <div class="swiper-slide"><img src="/images/file.png"/></div>
+    <div class="swiper-slide"><img src="/images/stationery.png"/></div>
+    <div class="swiper-slide"><img src="/images/stapler.png"/></div>
+    <div class="swiper-slide"><img src="/images/tape.png"/></div>
   </div>
-
-  <!-- Add Pagination -->
   <div class="swiper-pagination"></div>
 </div>
 
@@ -178,60 +168,34 @@
   <p>&copy; 2024 나의 문구 판매 온라인 스토어. 모든 권리 보유.</p>
 </footer>
 
-<!-- Swiper JS -->
 <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
 
-<!-- JavaScript for Filtering and Redirecting -->
+<!-- Swiper JS 초기화 및 필터링 -->
 <script>
-  // Swiper 초기화
   const swiper = new Swiper('.swiper-container', {
-    loop: true, // 무한 루프
-    autoplay: {
-      delay: 3000, // 3초마다 자동으로 슬라이드 전환
-      disableOnInteraction: false, // 사용자가 조작해도 자동 재생 계속
-    },
-    pagination: {
-      el: '.swiper-pagination',
-      clickable: true
-    }
+    loop: true,
+    autoplay: { delay: 3000, disableOnInteraction: false },
+    pagination: { el: '.swiper-pagination', clickable: true }
   });
 
-  // 카테고리 선택 후 페이지 전환
   function filterAndRedirect() {
     const categoryFilter = document.getElementById("categoryFilter").value;
-
     let url = "";
 
-    // 카테고리별 URL 설정
     switch (categoryFilter) {
-      case "pen":
-        url = "/pen"; // 필기구 페이지로 이동
-        break;
-      case "notebooks":
-        url = "/notebooks"; // 노트 및 다이어리 페이지로 이동
-        break;
-      case "files":
-        url = "/files"; // 파일 및 폴더 페이지로 이동
-        break;
-      case "stationery":
-        url = "/stationery"; // 학생용 문구 페이지로 이동
-        break;
-      case "office":
-        url = "/office"; // 사무용품 페이지로 이동
-        break;
-      case "other":
-        url = "/other"; // 기타 문구 및 소품 페이지로 이동
-        break;
-      default:
-        return; // 필터를 선택하지 않으면 아무 일도 하지 않음
+      case "pen": url = "/product/pen"; break;
+      case "notebooks": url = "/product/notebooks"; break;
+      case "files": url = "/product/files"; break;
+      case "stationery": url = "/product/stationery"; break;
+      case "office": url = "/product/office"; break;
+      case "other": url = "/product/other"; break;
     }
 
-    // 슬라이드 애니메이션 후 URL로 리다이렉트
     setTimeout(function() {
       if (url) {
         window.location.href = url;
       }
-    }, 500); // 애니메이션이 끝날 때까지 기다림 (500ms)
+    }, 500);
   }
 </script>
 

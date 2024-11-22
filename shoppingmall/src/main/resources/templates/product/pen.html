@@ -78,7 +78,7 @@
 
 <!-- Header Section -->
 <header>
-  <h1>기타 문구 및 소품</h1>
+  <h1>필기구</h1>
 </header>
 <div class="container">
   <div class="filters">
@@ -97,12 +97,23 @@
 <!-- Product List Section -->
 <div class="product-list">
   <div class="product-item">
-    <img src="/images/tape.png" alt="테이프"/>
-    <p>테이프</p>
+    <!-- 상세 페이지로 이동하는 링크로 감싸기 -->
+    <a href="/detail/pencilDetail"> <!-- "/product-detail/pencil"를 실제 상세 페이지 URL로 수정하세요 -->
+      <img src="/images/pencil.png" alt="연필"/>
+      <p>연필</p>
+      <p>1,000원</p>
+    </a>
+  </div>
+
+  <div class="product-item">
+    <img src="/images/ballpen.png" alt="볼펜"/>
+    <p>볼펜</p>
+    <p>1,500원</p>
   </div>
   <div class="product-item">
-    <img src="/images/boxtape.png" alt="박스테이프"/>
-    <p>박스 테이프</p>
+    <img src="/images/sharppencil.png" alt="샤프"/>
+    <p>샤프</p>
+    <p>1,200원</p>
   </div>
 </div>
 
@@ -110,6 +121,7 @@
 <footer>
   <p>&copy; 2024 나의 문구 판매 온라인 스토어. 모든 권리 보유.</p>
 </footer>
+
 <script>
   // Swiper 초기화
   const swiper = new Swiper('.swiper-container', {
@@ -133,22 +145,22 @@
     // 카테고리별 URL 설정
     switch (categoryFilter) {
       case "pen":
-        url = "/pen"; // 필기구 페이지로 이동
+        url = "/product/pen"; // 필기구 페이지로 이동
         break;
       case "notebooks":
-        url = "/notebooks"; // 노트 및 다이어리 페이지로 이동
+        url = "/product/notebooks"; // 노트 및 다이어리 페이지로 이동
         break;
       case "files":
-        url = "/files"; // 파일 및 폴더 페이지로 이동
+        url = "/product/files"; // 파일 및 폴더 페이지로 이동
         break;
       case "stationery":
-        url = "/stationery"; // 학생용 문구 페이지로 이동
+        url = "/product/stationery"; // 학생용 문구 페이지로 이동
         break;
       case "office":
-        url = "/office"; // 사무용품 페이지로 이동
+        url = "/product/office"; // 사무용품 페이지로 이동
         break;
       case "other":
-        url = "/other"; // 기타 문구 및 소품 페이지로 이동
+        url = "/product/other"; // 기타 문구 및 소품 페이지로 이동
         break;
       default:
         return; // 필터를 선택하지 않으면 아무 일도 하지 않음

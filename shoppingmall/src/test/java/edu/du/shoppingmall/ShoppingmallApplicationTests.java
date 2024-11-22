@@ -10,18 +10,19 @@ import java.time.LocalDateTime;
 @SpringBootTest
 class ShoppingmallApplicationTests {
     @Autowired
-    UserRepository userRepository;
+    private MemberRepository memberRepository;
 
     @Test
     void insert_test() {
-        Member user = Member.builder()
+        Member member = Member.builder()
                 .memberName("장수영")
                 .password("1234")
                 .email("syjang@korea.com")
+                .memberAddress("경기도 구리시 동구릉로 129번길 24")
                 .role("admin")
                 .regdate(LocalDateTime.now())
                 .build();
-        System.out.println(userRepository.save(user));
+        System.out.println(memberRepository.save(member));
     }
 
 }
